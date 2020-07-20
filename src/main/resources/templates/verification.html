@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8">
+<title>Form Cinemas</title>
+</head>
+<body>
+	<div layout:fragment="pageContent">
+	 <div class="container mt-3">
+	  <div class="card">
+	   <div class="card-header">Vérification de l'enregistrement</div>
+	   <div class="card-body">
+	    <label>ID :</label>
+	    <strong><label th:text="${cinema.id}"></label></strong>
+	   </div>
+	   <div class="card-body">
+	    <label>Nom :</label>
+	    <strong><label th:text="${cinema.name}"></label></strong>
+	   </div>
+	   <div class="card-body">
+	    <label>Longitude :</label>
+	    <strong><label th:text="${cinema.longitude}"></label></strong>
+	   </div>
+	   <div class="card-body">
+	    <label>Latitude :</label>
+	    <strong><label th:text="${cinema.latitude}"></label></strong>
+	   </div>
+	   <div class="card-body">
+	    <label>Altitude :</label>
+	    <strong><label th:text="${cinema.altitude}"></label></strong>
+	   </div>
+	   <div class="card-body">
+	    <label>Nombre de salles :</label>
+	    <strong><label th:text="${cinema.nombreSalles}"></label></strong>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+</body>
+</html>

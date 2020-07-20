@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template1">
+<head>
+<meta charset="utf-8">
+<title>Cinemas</title>
+</head>
+<body>
+  <div layout:fragment="pageContent">
+  <div class="container mt-3">
+	<div class="card">
+		<div class="card-header">Liste des cinemas</div>
+		<div class="card-body">
+		 <form method="get" th:action="@{cinema}">
+ 			<div class="form-group">
+ 			<label>Nom:</label>
+ 			<input type="text" name="keyword" th:value="${keyword}">
+ 			<button class="btn btn-success">Chercher</button>
+ 			</div>
+ 		 </form>
+		 <table class="table">
+ 		  <tr>
+ 		   <th>ID</th><th>Nom</th><th>Longitude</th><th>Latitude</th><th>Altitude</th><th>Nombre de Salles</th>
+ 		  </tr>
+ 		  <tr th:each="c:${listCinemas}">
+ 		  <td th:text="${c.id}"></td>
+ 		  <td th:text="${c.name}"></td>
+ 		  <td th:text="${c.longitude}"></td>
+ 		  <td th:text="${c.latitude}"></td>
+ 		  <td th:text="${c.altitude}"></td>
+ 		  <td th:text="${c.nombreSalles}"></td>
+
+ 	  	  <td><a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')" class="btn btn-danger" th:href="@{deleteCinema(id=${c.id})}">Supprimer</a></td>
+ 		  <td><a class="btn btn-success" th:href="@{editCinema(id=${c.id})}">Modifier</a></td>
+ 		  </tr>
+ 		 </table>
+ 		 <ul class="nav nav-pils">
+ 			<li th:each="page,status:${pages}">
+ 				<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" class="btn" 
+ 				   th:href="@{cinema(page=${status.index},keyword=${keyword})}" 
+ 				   th:text="${status.index}"></a>
+ 			</li>
+ 		</ul>
+		</div>
+	</div>
+  </div>
+  </div>
+</body>
+</html>

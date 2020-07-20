@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8">
+<title>Form Cinemas</title>
+</head>
+<body>
+	<div layout:fragment="pageContent">
+		<div class="container mt-2">
+			<div class="card">
+				<div class="card-header" th:if="${mode=='new'}">Saisie d'un nouveau cinéma</div>
+				<div class="card-header" th:if="${mode=='edit'}">Mise à jour d'un cinéma</div>
+				<div class="card-body">
+					<form th:action="@{saveCinema}" method="post">
+						<div class="form-group">
+							<label class="control-label">ID:</label> 
+							<label class="control-label" th:text="${cinema.id}"></label> 
+							<input type="hidden"
+								name="id" class="form-control" th:value="${cinema.id}">
+
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nom:</label> 
+							<input type="text"
+								name="name" class="form-control" th:value="${cinema.name}">
+							<span th:errors=${cinema.name} class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Longitude:</label> <input
+								type="text" name="longitude" class="form-control"
+								th:value="${cinema.longitude}"> <span
+								th:errors=${cinema.longitude} class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Latitude:</label> <input type="text"
+								name="latitude" class="form-control"
+								th:value="${cinema.latitude}"> 
+								<span
+								th:errors=${cinema.latitude} class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Altitude:</label> <input type="text"
+								name="altitude" class="form-control"
+								th:value="${cinema.altitude}"> <span
+								th:errors=${cinema.altitude} class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nombre de Salles:</label> <input
+								type="text" name="nombreSalles" class="form-control"
+								th:value="${cinema.nombreSalles}"> <span
+								th:errors=${cinema.nombreSalles} class="text-danger"></span>
+						</div>
+						<button class="btn btn-success" type="submit">Sauvegarder</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
